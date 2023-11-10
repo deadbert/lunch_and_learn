@@ -5,10 +5,11 @@ class CountriesService
   end
 
   def get_url(endpoint)
-    conn.get(enpoint)
+    response = conn.get(endpoint)
+    JSON.parse(response.body, symbolize_names: true)
   end
 
-  def search_countries(q)
-    get_url("name/#{q}")
+  def random_country
+    get_url("all")
   end
 end
