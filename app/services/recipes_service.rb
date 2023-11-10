@@ -1,7 +1,7 @@
 class RecipesService
 
   def conn
-    Farday.new(url: "https://api.edamam.com/") do |f|
+    Faraday.new(url: "https://api.edamam.com/") do |f|
       f.params[:app_id] = Rails.application.credentials.edamam[:app_id]
       f.params[:app_key] = Rails.application.credentials.edamam[:key]
       f.params[:type] = "public"
@@ -9,7 +9,8 @@ class RecipesService
   end
 
   def get_url(endpoint)
-    conn.get(endpoint)
+    response = conn.get(endpoint)
+    JSON.parse(response.body, symbolize_names: true)
   end
 
   def recipe_search(q)
