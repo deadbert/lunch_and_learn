@@ -36,5 +36,30 @@ RSpec.describe "Recipe search by country endpoint" do
       expect(data[:data].first[:attributes]).to_not have_key :mealType
       expect(data[:data].first[:attributes]).to_not have_key :_links
     end
+
+    it "returns a random country recipe search when country=random" do
+      WebMock.allow_net_connect!
+      VCR.eject_cassette
+      VCR.turn_off!
+
+      get "/api/v1/recipes?country=random"
+
+      expect(response).to be_successful 
+      data = JSON.parse(response.body, symbolize_names: true)
+
+      expect(data).to have_key :data
+      recipes = data[:data]
+
+      expect(recipes.first).to have_key :id
+      expect(recipes.first[:id]).to eq(nil)
+
+      expect(recipes.first).to have_key :attributes
+      expect(recipes.first[:attributes]).to have_key :title
+      expect(recipes.first[:attributes]).to have_key :url
+      expect(recipes.first[:attributes]).to have_key :country
+      expect(recipes.first[:attributes]).to have_key :image
+
+      VCR.turn_on!
+    end
   end
 end
