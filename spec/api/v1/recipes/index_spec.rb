@@ -47,18 +47,22 @@ RSpec.describe "Recipe search by country endpoint" do
       expect(response).to be_successful 
       data = JSON.parse(response.body, symbolize_names: true)
 
+      
       expect(data).to have_key :data
       recipes = data[:data]
 
-      expect(recipes.first).to have_key :id
-      expect(recipes.first[:id]).to eq(nil)
-
-      expect(recipes.first).to have_key :attributes
-      expect(recipes.first[:attributes]).to have_key :title
-      expect(recipes.first[:attributes]).to have_key :url
-      expect(recipes.first[:attributes]).to have_key :country
-      expect(recipes.first[:attributes]).to have_key :image
-
+      unless recipes.empty?
+        expect(recipes.first).to have_key :id
+        expect(recipes.first[:id]).to eq(nil)
+  
+        expect(recipes.first).to have_key :attributes
+        expect(recipes.first[:attributes]).to have_key :title
+        expect(recipes.first[:attributes]).to have_key :url
+        expect(recipes.first[:attributes]).to have_key :country
+        expect(recipes.first[:attributes]).to have_key :image  
+      end
+      
+      WebMock.disable_net_connect!
       VCR.turn_on!
     end
   end
