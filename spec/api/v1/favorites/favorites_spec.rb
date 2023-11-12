@@ -58,5 +58,17 @@ RSpec.describe "Favorites endpoint" do
       expect(result[:data].first[:attributes]).to have_key :country
       expect(result[:data].first[:attributes]).to have_key :created_at
     end
+
+    it "returns an error if the api_key does not match a user" do
+      hank = User.create(name:"Hank", email: "hilldad@king.com", password: "1234", password_confirmation: "1234")
+
+      Favorite.create(country: "place", recipe_link: "linky", recipe_title: "food stuff", user_id: hank.id)
+
+      get "/api/v1/favorites?api_key=aaaa"
+
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(result[:error]).to eq("Invalid api_key provided")
+    end
   end
 end
