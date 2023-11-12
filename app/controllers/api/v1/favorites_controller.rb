@@ -14,6 +14,6 @@ class Api::V1::FavoritesController < ApplicationController
   def index
     user = User.find_by(api_key: params[:api_key])
     favorites = Favorite.where('user_id = ?', user.id)
-    require 'pry';binding.pry
+    render json: FavoriteSerializer.new(favorites)
   end
 end
