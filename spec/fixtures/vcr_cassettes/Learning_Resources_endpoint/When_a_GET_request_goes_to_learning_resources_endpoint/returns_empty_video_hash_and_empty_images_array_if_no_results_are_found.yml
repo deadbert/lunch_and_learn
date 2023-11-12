@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://www.googleapis.com/youtube/v3/search?channelId=UCluQ5yInbeAkkeCndNnUhpw&key=AIzaSyCwttXVjUMrIK6W5Dn97XyO25kIVpUE5Mk&part=snippet&q=zzzzzzzzzzzz
+    uri: https://www.googleapis.com/youtube/v3/search?channelId=UCluQ5yInbeAkkeCndNnUhpw&key=DONT_SHARE_MY_GOOGLE_KEY&part=snippet&q=zzzzzzzzzzzz
     body:
       encoding: US-ASCII
       string: ''
@@ -25,7 +25,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Sun, 12 Nov 2023 16:31:46 GMT
+      - Sun, 12 Nov 2023 22:39:59 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -53,10 +53,10 @@ http_interactions:
           },
           "items": []
         }
-  recorded_at: Sun, 12 Nov 2023 16:31:44 GMT
+  recorded_at: Sun, 12 Nov 2023 22:39:59 GMT
 - request:
     method: get
-    uri: https://api.unsplash.com/search/photos?client_id=J2BC92pcM1tBrk0-vXEjdUTM_u43I6iJ9QBf42VDM-c&query=zzzzzzzzzzzz
+    uri: https://api.unsplash.com/search/photos?client_id=DONT_SHARE_MY_UNSPLASH_ID&query=zzzzzzzzzzzz
     body:
       encoding: US-ASCII
       string: ''
@@ -79,9 +79,9 @@ http_interactions:
       Server:
       - Cowboy
       Report-To:
-      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1699806614&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&s=6GrP%2F6TIQO5fHFIbwEHMPFZdLBHxlqRh3wcIw0gO7A0%3D"}]}'
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1699828799&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&s=lNnRx0Hn4ThuEufPPFpQdyVd0WeznRKyP7wiD9szkx0%3D"}]}'
       Reporting-Endpoints:
-      - heroku-nel=https://nel.heroku.com/reports?ts=1699806614&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&s=6GrP%2F6TIQO5fHFIbwEHMPFZdLBHxlqRh3wcIw0gO7A0%3D
+      - heroku-nel=https://nel.heroku.com/reports?ts=1699828799&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&s=lNnRx0Hn4ThuEufPPFpQdyVd0WeznRKyP7wiD9szkx0%3D
       Nel:
       - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
       Content-Type:
@@ -113,11 +113,11 @@ http_interactions:
       X-Ratelimit-Limit:
       - '50'
       X-Ratelimit-Remaining:
-      - '49'
+      - '48'
       X-Request-Id:
-      - b3698182-c1de-4881-967b-fa0b4481dbd1
+      - 7114c0a0-0d06-47c3-932f-1abbf6bb046c
       X-Runtime:
-      - '0.199956'
+      - '0.097558'
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains
       Via:
@@ -125,21 +125,21 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Sun, 12 Nov 2023 16:31:46 GMT
+      - Sun, 12 Nov 2023 22:39:59 GMT
       Age:
-      - '92'
+      - '0'
       X-Served-By:
-      - cache-iad-kiad7000170-IAD, cache-den8260-DEN
+      - cache-iad-kiad7000170-IAD, cache-den8244-DEN
       X-Cache:
-      - MISS, HIT
+      - MISS, MISS
       X-Cache-Hits:
-      - 0, 1
+      - 0, 0
       X-Timer:
-      - S1699806707.588258,VS0,VE1
+      - S1699828800.787754,VS0,VE162
       Vary:
       - Accept-Encoding,Authorization,Accept-Language,client-geo-region,Accept
     body:
       encoding: ASCII-8BIT
       string: '{"total":0,"total_pages":0,"results":[]}'
-  recorded_at: Sun, 12 Nov 2023 16:31:44 GMT
+  recorded_at: Sun, 12 Nov 2023 22:39:59 GMT
 recorded_with: VCR 6.2.0
