@@ -10,4 +10,10 @@ class Api::V1::FavoritesController < ApplicationController
       render json: ErrorSerializer.new(Error.new("No user found for api_key")), status: 404
     end
   end
+
+  def index
+    user = User.find_by(api_key: params[:api_key])
+    favorites = Favorite.where('user_id = ?', user.id)
+    require 'pry';binding.pry
+  end
 end
