@@ -45,5 +45,22 @@ RSpec.describe "Register User endpoint" do
       expect(result[:data][:type]).to eq("error")
       expect(result[:data][:attributes][:error_message]).to eq(["Email has already been taken"])
     end
+
+    it "Returns error message if passwords do not match" do
+      User.create(name:"bobby", email: "goodboy@ruffruff.com", password: "1234", password_confirmation: "1234")
+
+      user = {
+        "name": "Odell",
+        "email": "goodboy@ruffruff.com",
+        "password": "treats4lyf",
+        "password_confirmation": "1234"
+      }
+
+      post "/api/v1/users", params: user, as: :json
+
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(result[:error]).to eq("Passwords must match")
+    end
   end
 end
