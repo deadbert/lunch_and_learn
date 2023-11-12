@@ -19,5 +19,21 @@ RSpec.describe "Favorites endpoint" do
 
       expect(result[:success]).to eq("Favorite added successfully")
     end
+
+    it "returns an error if the given API key does not match a user" do
+      user = User.create(name:"bobby", email: "hill@king.com", password: "1234", password_confirmation: "1234")
+
+      data = {
+        "api_key": "1234",
+        "country": "thailand",
+        "recipe_link": "https://www.tastingtable.com/.....",
+        "recipe_title": "Crab Fried Rice (Khaao Pad Bpu)"
+      }
+
+      post "/api/v1/favorites", params: data, as: :json
+
+      result = JSON.parse(response.body, symbolize_names: true)
+      expect(result[:data][:attributes][:error_message]).to eq("No user found for api_key")
+    end
   end
 end
