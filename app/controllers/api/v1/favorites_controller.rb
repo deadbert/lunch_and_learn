@@ -13,7 +13,11 @@ class Api::V1::FavoritesController < ApplicationController
 
   def index
     user = User.find_by(api_key: params[:api_key])
-    favorites = Favorite.where('user_id = ?', user.id)
-    render json: FavoriteSerializer.new(favorites)
+    if user
+      favorites = Favorite.where('user_id = ?', user.id)
+      render json: FavoriteSerializer.new(favorites)
+    else
+      render json: {error: "Invalid api_key provided"}, status: :forbidden
+    end
   end
 end
