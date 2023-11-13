@@ -34,14 +34,19 @@ RSpec.describe "Tourist sites endpoint" do
       expect(result[:data][:attributes][:error_message]).to eq("No results found for search")
     end
 
-    it "returns an empty array when a country is found, but no tourist_sites are found by Places API", :vcr do
+    it "returns a serialized error when a country is found, but no tourist_sites are found by Places API", :vcr do
       get '/api/v1/tourist_sites?country=Uruguay'
 
       result = JSON.parse(response.body, symbolize_names: true)
-
+      
       expect(result).to be_a Hash
       expect(result).to have_key :data
-      expect(result[:data]).to be_empty
+      expect(result[:data]).to have_key :id
+      expect(result[:data]).to have_key :type
+      expect(result[:data][:type]).to eq("error")
+      expect(result[:data]).to have_key :attributes
+      expect(result[:data][:attributes]).to have_key :error_message
+      expect(result[:data][:attributes][:error_message]).to eq("No results found for search")
     end
   end
 end
