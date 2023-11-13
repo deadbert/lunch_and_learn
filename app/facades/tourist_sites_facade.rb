@@ -6,6 +6,7 @@ class TouristSitesFacade
   end
 
   def find_sites(country)
+    country = country.split.join("%20")
     lat_long = @countries_service.country(country).first[:capitalInfo][:latlng]
     unless lat_long == nil
       tourist_sites = @places_service.find_tourist_sites(lat_long[1], lat_long[0])
