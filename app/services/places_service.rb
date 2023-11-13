@@ -11,7 +11,7 @@ class PlacesService
     JSON.parse(result.body, symbolize_names: true)
   end
 
-  def test
-    get_url("places?categories=commercial.supermarket&filter=rect%3A10.716463143326969%2C48.755151258420966%2C10.835314015356737%2C48.680903341613316&limit=20")
+  def find_tourist_sites(long, lat)
+    get_url("places?filter=circle:#{long},#{lat},1000&categories=tourism")
   end
 end

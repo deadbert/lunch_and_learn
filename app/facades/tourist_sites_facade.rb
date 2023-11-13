@@ -1,7 +1,13 @@
 class TouristSitesFacade
 
   def initialize()
-    @coutries_service = CountriesService.new()
+    @countries_service = CountriesService.new()
     @places_service = PlacesService.new()
+  end
+
+  def find_sites(country)
+    lat_long = @countries_service.country(country).first[:capitalInfo][:latlng]
+    tourist_sites = @places_service.find_tourist_sites(lat_long[1], lat_long[0])
+    require 'pry';binding.pry
   end
 end
