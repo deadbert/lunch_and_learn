@@ -74,6 +74,7 @@ VCR.configure do |config|
   config.filter_sensitive_data('DONT_SHARE_MY_EDAMAM_KEY') { Rails.application.credentials.edamam[:key] }
   config.filter_sensitive_data('DONT_SHARE_MY_EDAMAM_ID') { Rails.application.credentials.edamam[:app_id] }
   config.filter_sensitive_data('DONT_SHARE_MY_UNSPLASH_ID') { Rails.application.credentials.unsplash[:key] }
+  config.filter_sensitive_data('DONT_SHARE_MY_Places_KEY') { Rails.application.credentials.places[:key] }
   config.configure_rspec_metadata!
 end
 
