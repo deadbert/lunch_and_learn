@@ -12,6 +12,6 @@ class PlacesService
   end
 
   def find_tourist_sites(long, lat)
-    get_url("places?filter=circle:#{long},#{lat},1000&categories=tourism")
+    get_url("places?filter=circle:#{long},#{lat},1000&categories=tourism.sights")
   end
 end
