@@ -38,7 +38,7 @@ RSpec.describe "Tourist sites endpoint" do
       get '/api/v1/tourist_sites?country=Uruguay'
 
       result = JSON.parse(response.body, symbolize_names: true)
-      
+
       expect(result).to be_a Hash
       expect(result).to have_key :data
       expect(result[:data]).to have_key :id
@@ -47,6 +47,23 @@ RSpec.describe "Tourist sites endpoint" do
       expect(result[:data]).to have_key :attributes
       expect(result[:data][:attributes]).to have_key :error_message
       expect(result[:data][:attributes][:error_message]).to eq("No results found for search")
+    end
+
+    it "properly encodes spaces when a query comes in with a search term containing spaces", :vcr do
+
+      get "/api/v1/tourist_sites?country=new zealand"
+
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(result).to be_a Hash
+      expect(result).to have_key :data 
+      expect(result[:data].first).to have_key :id
+      expect(result[:data].first).to have_key :type
+      expect(result[:data].first[:type]).to eq("tourist_site")
+      expect(result[:data].first).to have_key :attributes
+      expect(result[:data].first[:attributes]).to have_key :name
+      expect(result[:data].first[:attributes]).to have_key :address
+      expect(result[:data].first[:attributes]).to have_key :place_id
     end
   end
 end
