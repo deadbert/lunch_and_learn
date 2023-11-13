@@ -17,5 +17,14 @@ RSpec.describe "Tourist sites endpoint" do
       expect(result[:data].first[:attributes]).to have_key :address
       expect(result[:data].first[:attributes]).to have_key :place_id
     end
+
+    it "returns a hash with error: No results found for search if no country is found from user input", :vcr do
+
+      get '/api/v1/tourist_sites?country=antarctica'
+
+      result = JSON.parse(response.body, symbolize_names: true)
+      expect(result).to be_a Hash
+      expect(result[:error]).to eq("No results found for search")
+    end
   end
 end
