@@ -5,7 +5,7 @@ class Api::V1::TouristSitesController < ApplicationController
     if tourist_sites
       render json: TouristSiteSerializer.new(tourist_sites)
     else
-      render json: {error: "No results found for search"}
+      render json: ErrorSerializer.new(Error.new("No results found for search"))
     end
   end
 end
